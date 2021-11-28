@@ -22,29 +22,22 @@ function playRound(playerSelection, computerSelection) {
     console.log(`Player selection: ${playerSelection} and computer: ${computerSelection}`)
 
     if (playerSelection == "rock") {
-        if (computerSelection == "rock") {
-            return playerPoints += 0
-        } else if (computerSelection == "paper") {
-            return computerPoints += 1
+        if (computerSelection == "paper") {
+            computerPoints += 1
         } else if (computerSelection == "scissor") {
-            return playerPoints += 1
+            playerPoints += 1
         }
     } else if (playerSelection == "paper") {
-        if (computerSelection == "paper") {
-            return playerPoints += 0
-        } else if (computerSelection == "scissor") {
-            return computerPoints += 1
-        } else if (computerSelection == "rock") {
-            return playerPoints += 1
-        }
-
-    } else if (playerSelection == "scissor") {
         if (computerSelection == "scissor") {
-            return playerPoints += 0
+            computerPoints += 1
         } else if (computerSelection == "rock") {
-            return computerPoints += 1
+            playerPoints += 1
+        }
+    } else if (playerSelection == "scissor") {
+        if (computerSelection == "rock") {
+            computerPoints += 1
         } else if (computerSelection == "paper") {
-            return playerPoints += 1
+            playerPoints += 1
         }
     }
     
