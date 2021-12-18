@@ -1,6 +1,19 @@
 // Started project 28.11.2021 at 14:00pm
 let playerPoints = 0;
 let computerPoints = 0;
+const buttons = document.querySelectorAll('button');
+const oneButton = document.querySelector('#paper');
+
+function alertFunction() {
+    alert(button.id)
+}
+
+buttons.forEach((button) => {
+    button.addEventListener('click', alertFunction);
+});
+// oneButton.addEventListener('click', alertFunction);
+
+         
 
 // Working as intended!
 function computerPlay() {
@@ -45,11 +58,7 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     let roundCounter = 0;
-    while (roundCounter < 5) {
-        console.log(`Player points: ${playerPoints} computer points: ${computerPoints}`)
-        playRound()
-        roundCounter += 1
-    }
+    
     if (playerPoints > computerPoints) {
         console.log("you win")
     } else if (computerPoints > playerPoints) {
