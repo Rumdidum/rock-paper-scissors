@@ -8,12 +8,9 @@ const oneButton = document.querySelector('#paper');
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-
+        playRound(button.id)
     });
-});
-// oneButton.addEventListener('click', alertFunction);
-
-         
+});     
 
 // Working as intended!
 function computerPlay() {
@@ -28,9 +25,8 @@ function computerPlay() {
     }
     return handsign
 }
-
 function playRound(playerSelection, computerSelection) {
-    playerSelection = prompt("pick your weapon: ").toLowerCase();
+   
     computerSelection = computerPlay();
     console.log(`Player selection: ${playerSelection} and computer: ${computerSelection}`)
 
@@ -57,7 +53,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    let roundCounter = 0;
+    
     
     if (playerPoints > computerPoints) {
         console.log("you win")
