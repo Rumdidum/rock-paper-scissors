@@ -4,12 +4,12 @@ let computerPoints = 0;
 const buttons = document.querySelectorAll('button');
 const oneButton = document.querySelector('#paper');
 
-function alertFunction() {
-    alert(button.id)
-}
+
 
 buttons.forEach((button) => {
-    button.addEventListener('click', alertFunction);
+    button.addEventListener('click', () => {
+
+    });
 });
 // oneButton.addEventListener('click', alertFunction);
 
