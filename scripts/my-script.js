@@ -49,13 +49,13 @@ function playRound(playerSelection, computerSelection=computerPlay()) {
 }
 
 function game() {
-    
-    buttons.forEach((button) => {
-        button.addEventListener('click', () => {
-            playRound(button.id);
-        });
-    });    
-
+    while (playerPoints || computerPoints < 5) {
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                playRound(button.id);
+            });
+        }); 
+    } 
     if (playerPoints > computerPoints) {
         console.log("you win")
     } else if (computerPoints > playerPoints) {
@@ -64,8 +64,6 @@ function game() {
         console.log("its a tie")
     }
     console.log(`Your points: ${playerPoints}`)
-    console.log(`computer Points: ${computerPoints}`)
+    console.log(`computer Points: ${computerPoints}`)      
 }
-
 game()
-
