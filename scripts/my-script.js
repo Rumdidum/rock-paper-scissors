@@ -2,15 +2,8 @@
 let playerPoints = 0;
 let computerPoints = 0;
 const buttons = document.querySelectorAll('button');
-const oneButton = document.querySelector('#paper');
 
-
-
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        playRound(button.id)
-    });
-});     
+let round = 0;
 
 // Working as intended!
 function computerPlay() {
@@ -25,9 +18,12 @@ function computerPlay() {
     }
     return handsign
 }
-function playRound(playerSelection, computerSelection) {
-   
-    computerSelection = computerPlay();
+function playRound(playerSelection, computerSelection=computerPlay()) {
+    alert(playerSelection)
+    
+    round++;
+    console.log(round)
+    // computerSelection = computerPlay();
     console.log(`Player selection: ${playerSelection} and computer: ${computerSelection}`)
 
     if (playerSelection == "rock") {
@@ -54,7 +50,12 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     
-    
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            playRound(button.id);
+        });
+    });    
+
     if (playerPoints > computerPoints) {
         console.log("you win")
     } else if (computerPoints > playerPoints) {
