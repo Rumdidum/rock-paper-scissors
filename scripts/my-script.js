@@ -3,8 +3,6 @@ let playerPoints = 0;
 let computerPoints = 0;
 const buttons = document.querySelectorAll('button');
 
-let round = 0;
-
 // Working as intended!
 function computerPlay() {
     // Everytime computerPlay is called a new random number will generate.
@@ -21,11 +19,8 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection=computerPlay()) {
     alert(playerSelection)
     
-    round++;
-    console.log(round)
-    // computerSelection = computerPlay();
-    console.log(`Player selection: ${playerSelection} and computer: ${computerSelection}`)
-
+    console.log(`Player: ${playerSelection} | Comp: ${computerSelection}`)
+    
     if (playerSelection == "rock") {
         if (computerSelection == "paper") {
             computerPoints += 1
@@ -45,25 +40,25 @@ function playRound(playerSelection, computerSelection=computerPlay()) {
             playerPoints += 1
         }
     }
-    
+    console.log(`Your P: ${playerPoints}`)
+    console.log(`computer P: ${computerPoints}\n-----------`)    
 }
 
 function game() {
-    while (playerPoints || computerPoints < 5) {
-        buttons.forEach((button) => {
-            button.addEventListener('click', () => {
-                playRound(button.id);
-            });
-        }); 
-    } 
-    if (playerPoints > computerPoints) {
-        console.log("you win")
-    } else if (computerPoints > playerPoints) {
-        console.log("you lose")
-    } else {
-        console.log("its a tie")
-    }
-    console.log(`Your points: ${playerPoints}`)
-    console.log(`computer Points: ${computerPoints}`)      
+    
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            if (playerPoints == 2) {
+                console.log("you win")
+            } else {
+                playRound(button.id)
+            }
+            
+        });
+    });
+    
 }
 game()
+
+
+
