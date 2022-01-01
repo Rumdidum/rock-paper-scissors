@@ -1,3 +1,24 @@
+/* 
+* {
+    border: red solid 2px;
+} */
 body {
     text-align: center;
+    background-image: url(images/pixels-1275701.jpg);
+}
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+#restart {
+    margin: 20px;
+}
+#game button {
+    padding: 20px;
+    width: 100px;
+    cursor: pointer;
+}
+a, a:visited, a:hover, a:active {
+  color: inherit;
 }

@@ -17,7 +17,7 @@ function computerPlay() {
     return handsign
 }
 function playRound(playerSelection, computerSelection=computerPlay()) {
-    alert(playerSelection)
+    // alert(playerSelection)
     
     console.log(`Player: ${playerSelection} | Comp: ${computerSelection}`)
     
@@ -40,25 +40,60 @@ function playRound(playerSelection, computerSelection=computerPlay()) {
             playerPoints += 1
         }
     }
-    console.log(`Your P: ${playerPoints}`)
-    console.log(`computer P: ${computerPoints}\n-----------`)    
+    console.log(`Your P: ${playerPoints}\ncomputer P: ${computerPoints}\n-----------`)
+    if (playerPoints == 1) {
+        removeListener()
+    }
+}
+function removeListener() {
+    buttons.forEach((button) => {
+        button.removeEventListener('click', hey())
+    });
+}
+function buttonId() {
+    
+    buttons.forEach((button) => {
+        c = button.id;
+    })
+    let b = c;
+    return b
+}
+console.log(buttonId());
+console.log(buttonId());
+
+function hey() {
+    if (playerPoints == 1) {
+        console.log("you win")
+    } else {
+        playRound(button.id)
+    }
+}
+// diese Funktion ist nur zur übersicht
+function myEvent() {
+    if (playerPoints == 2) {
+        console.log("you are greato!")
+    } else {
+        buttons.forEach((button) => {
+            button.addEventListener('click', function hey() {
+                if (playerPoints == 1) {
+                    // das hier wird immer wieder ausgelöst
+                    console.log("you win")
+                } else {
+                    playRound(button.id)
+                }
+    
+            });
+        });
+    } 
 }
 
 function game() {
-    
-    buttons.forEach((button) => {
-        button.addEventListener('click', () => {
-            if (playerPoints == 2) {
-                console.log("you win")
-            } else {
-                playRound(button.id)
-            }
-            
-        });
-    });
-    
+    // dann wird das hier auch immer wieder ausgelöst
+    if (playerPoints != 1) {
+        myEvent()
+    } else {
+        console.log("you won")
+    }
 }
 game()
-
-
-
+// Wie schaffe ich es "button.id" an eine Variable zu binden?
