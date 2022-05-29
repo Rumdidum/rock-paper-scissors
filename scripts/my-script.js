@@ -8,7 +8,17 @@ const container = document.querySelector('#container').children;
 const gameButtons = document.querySelectorAll('.game');
 
 
+function handler() {
+    gameButtons.forEach((button) => {
 
+        if ((playerPoints || computerPoints) < 1) {
+            playRound(selection);
+            console.log("playerClick: " + selection);
+        } else {
+            results();
+        }
+    })
+}
 
 function game() {
     let selection;
@@ -20,12 +30,17 @@ function game() {
                 console.log("playerClick: " + selection);
             } else {
                 results();
+                button.removeEventListener('click',)
             }
         });
     })
 }
 
 function results() {
+    gameButtons.forEach((button) => {
+        button.removeEventListener('click', handler)
+    }
+    )
     if (playerPoints > computerPoints) {
         console.log("you win")
     } else if (computerPoints > playerPoints) {
@@ -41,10 +56,10 @@ function results() {
 function computerPLay() {
     let random_number = Math.floor(3 * Math.random());
     return choice[random_number];
-    
+
 }
 
-function playRound(playerSelection, computerSelection=computerPLay()) {
+function playRound(playerSelection, computerSelection = computerPLay()) {
     // playerSelection = playerClick();
     console.log(playerSelection + " some fun");
     // computerSelection = computerPLay();
@@ -69,7 +84,7 @@ function playRound(playerSelection, computerSelection=computerPLay()) {
             playerPoints += 1
         }
     }
-    computerRenderPts .textContent = computerPoints;
+    computerRenderPts.textContent = computerPoints;
     playerRenderPts.textContent = playerPoints;
     console.log(`Your points: ${playerPoints}`)
     console.log(`computer Points: ${computerPoints}`)
