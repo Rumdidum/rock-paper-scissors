@@ -1,44 +1,44 @@
 let playerPoints = 0;
 let computerPoints = 0;
+let computerRenderPts = document.querySelector('#computerPoints');
+let playerRenderPts = document.querySelector('#playerPoints');
 
 let choice = ["rock", "paper", "scissor"];
-const buttons = document.querySelectorAll('button');
+const container = document.querySelector('#container').children;
+const gameButtons = document.querySelectorAll('.game');
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissor = document.querySelector('#scissor');
-
 const btn = document.querySelector('#btn');
-console.log(buttons.length);
-console.log(buttons)
-
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        console.log(button.id.toLowerCase());
-        if (button.id.toLowerCase() == "rock") {
-            alert(button.id + " wohoooo!!!")
-        } else {
-            alert("hmm something went wrong")
-        }
-    });
-})
  
-function playerSelect() {
+function playerClick() {
     let selection;
-    rock.addEventListener('click', playRound);
+    gameButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            selection = button.id;
+            playRound(selection);
+            console.log("playerClick: " + selection);
+        });
+    })
 }
        
 function game() {
-    let roundCounter = 0;
-    playerSelect()
-    if (playerPoints > computerPoints) {
-        console.log("you win")
-    } else if (computerPoints > playerPoints) {
-        console.log("you lose")
+    
+    if ((playerPoints || computerPoints) <= 2) {
+        playerClick()
+    
+        if (playerPoints > computerPoints) {
+            console.log("you win")
+        } else if (computerPoints > playerPoints) {
+            console.log("you lose")
+        } else {
+            console.log("its a tie")
+        }
+        console.log(`Your points: ${playerPoints}`)
+        console.log(`computer Points: ${computerPoints}`)
     } else {
-        console.log("its a tie")
+        console.log("common")
     }
-    console.log(`Your points: ${playerPoints}`)
-    console.log(`computer Points: ${computerPoints}`)
 }
 
 // Generates a random number from 0 to 2 and use it to get a string from choice Array
@@ -48,9 +48,10 @@ function computerPLay() {
     
 }
 
-function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelect();
-    computerSelection = computerPLay();
+function playRound(playerSelection, computerSelection=computerPLay()) {
+    // playerSelection = playerClick();
+    console.log(playerSelection + " some fun");
+    // computerSelection = computerPLay();
     console.log(`Player selection: ${playerSelection} and computer: ${computerSelection}`);
 
     if (playerSelection == "rock") {
@@ -72,6 +73,9 @@ function playRound(playerSelection, computerSelection) {
             playerPoints += 1
         }
     }
+    
+    playerRenderPts.textContent = playerPoints;
+    console.log(`Your points: ${playerPoints}`)
+    console.log(`computer Points: ${computerPoints}`)
 }
-
 game()
