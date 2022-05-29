@@ -9,6 +9,10 @@ const gameButtons = document.querySelectorAll('.game');
 
 
 function handler() {
+    let selection;
+    gameButtons.forEach((button) => {
+        selection = button.id;
+    })
     if ((playerPoints || computerPoints) < 1) {
         console.log("playerClick: " + selection);
         playRound(selection);
