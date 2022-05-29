@@ -1,26 +1,58 @@
-// Started project 28.11.2021 at 14:00pm
 let playerPoints = 0;
 let computerPoints = 0;
-const buttons = document.querySelectorAll('button');
 
-// Working as intended!
-function computerPlay() {
-    // Everytime computerPlay is called a new random number will generate.
-    let random_number = Math.floor(3 * Math.random())
-    if (random_number == 0) {
-        handsign = "rock";
-    } else if (random_number == 1) {
-        handsign = "paper";
-    } else {
-        handsign = "scissor";
-    }
-    return handsign
+let choice = ["rock", "paper", "scissor"];
+const buttons = document.querySelectorAll('button');
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissor = document.querySelector('#scissor');
+
+const btn = document.querySelector('#btn');
+console.log(buttons.length);
+console.log(buttons)
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        console.log(button.id.toLowerCase());
+        if (button.id.toLowerCase() == "rock") {
+            alert(button.id + " wohoooo!!!")
+        } else {
+            alert("hmm something went wrong")
+        }
+    });
+})
+ 
+function playerSelect() {
+    let selection;
+    rock.addEventListener('click', playRound);
 }
-function playRound(playerSelection, computerSelection=computerPlay()) {
-    // alert(playerSelection)
+       
+function game() {
+    let roundCounter = 0;
+    playerSelect()
+    if (playerPoints > computerPoints) {
+        console.log("you win")
+    } else if (computerPoints > playerPoints) {
+        console.log("you lose")
+    } else {
+        console.log("its a tie")
+    }
+    console.log(`Your points: ${playerPoints}`)
+    console.log(`computer Points: ${computerPoints}`)
+}
+
+// Generates a random number from 0 to 2 and use it to get a string from choice Array
+function computerPLay() {
+    let random_number = Math.floor(3 * Math.random());
+    return choice[random_number];
     
-    console.log(`Player: ${playerSelection} | Comp: ${computerSelection}`)
-    
+}
+
+function playRound(playerSelection, computerSelection) {
+    playerSelection = playerSelect();
+    computerSelection = computerPLay();
+    console.log(`Player selection: ${playerSelection} and computer: ${computerSelection}`);
+
     if (playerSelection == "rock") {
         if (computerSelection == "paper") {
             computerPoints += 1
@@ -40,60 +72,6 @@ function playRound(playerSelection, computerSelection=computerPlay()) {
             playerPoints += 1
         }
     }
-    console.log(`Your P: ${playerPoints}\ncomputer P: ${computerPoints}\n-----------`)
-    if (playerPoints == 1) {
-        removeListener()
-    }
-}
-function removeListener() {
-    buttons.forEach((button) => {
-        button.removeEventListener('click', hey())
-    });
-}
-function buttonId() {
-    
-    buttons.forEach((button) => {
-        c = button.id;
-    })
-    let b = c;
-    return b
-}
-console.log(buttonId());
-console.log(buttonId());
-
-function hey() {
-    if (playerPoints == 1) {
-        console.log("you win")
-    } else {
-        playRound(button.id)
-    }
-}
-// diese Funktion ist nur zur übersicht
-function myEvent() {
-    if (playerPoints == 2) {
-        console.log("you are greato!")
-    } else {
-        buttons.forEach((button) => {
-            button.addEventListener('click', function hey() {
-                if (playerPoints == 1) {
-                    // das hier wird immer wieder ausgelöst
-                    console.log("you win")
-                } else {
-                    playRound(button.id)
-                }
-    
-            });
-        });
-    } 
 }
 
-function game() {
-    // dann wird das hier auch immer wieder ausgelöst
-    if (playerPoints != 1) {
-        myEvent()
-    } else {
-        console.log("you won")
-    }
-}
 game()
-// Wie schaffe ich es "button.id" an eine Variable zu binden?
