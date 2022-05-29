@@ -7,7 +7,7 @@ let choice = ["rock", "paper", "scissor"];
 const container = document.querySelector('#container').children;
 const gameButtons = document.querySelectorAll('.game');
 
-
+// Just a handler
 function handler() {
     let selection;
     gameButtons.forEach((button) => {
