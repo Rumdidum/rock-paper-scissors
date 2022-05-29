@@ -6,39 +6,35 @@ let playerRenderPts = document.querySelector('#playerPoints');
 let choice = ["rock", "paper", "scissor"];
 const container = document.querySelector('#container').children;
 const gameButtons = document.querySelectorAll('.game');
-const rock = document.querySelector('#rock');
-const paper = document.querySelector('#paper');
-const scissor = document.querySelector('#scissor');
-const btn = document.querySelector('#btn');
- 
-function playerClick() {
+
+
+
+
+function game() {
     let selection;
     gameButtons.forEach((button) => {
         button.addEventListener('click', () => {
             selection = button.id;
-            playRound(selection);
-            console.log("playerClick: " + selection);
+            if ((playerPoints || computerPoints) < 1) {
+                playRound(selection);
+                console.log("playerClick: " + selection);
+            } else {
+                results();
+            }
         });
     })
 }
-       
-function game() {
-    
-    if ((playerPoints || computerPoints) <= 2) {
-        playerClick()
-    
-        if (playerPoints > computerPoints) {
-            console.log("you win")
-        } else if (computerPoints > playerPoints) {
-            console.log("you lose")
-        } else {
-            console.log("its a tie")
-        }
-        console.log(`Your points: ${playerPoints}`)
-        console.log(`computer Points: ${computerPoints}`)
+
+function results() {
+    if (playerPoints > computerPoints) {
+        console.log("you win")
+    } else if (computerPoints > playerPoints) {
+        console.log("you lose")
     } else {
-        console.log("common")
+        console.log("its a tie")
     }
+    console.log(`Your points: ${playerPoints}`)
+    console.log(`computer Points: ${computerPoints}`)
 }
 
 // Generates a random number from 0 to 2 and use it to get a string from choice Array
@@ -73,7 +69,7 @@ function playRound(playerSelection, computerSelection=computerPLay()) {
             playerPoints += 1
         }
     }
-    
+    computerRenderPts .textContent = computerPoints;
     playerRenderPts.textContent = playerPoints;
     console.log(`Your points: ${playerPoints}`)
     console.log(`computer Points: ${computerPoints}`)
