@@ -9,36 +9,27 @@ const gameButtons = document.querySelectorAll('.game');
 
 
 function handler() {
+    let selection;
     gameButtons.forEach((button) => {
-
-        if ((playerPoints || computerPoints) < 1) {
-            playRound(selection);
-            console.log("playerClick: " + selection);
-        } else {
-            results();
-        }
+        selection = button.id;
     })
+    if ((playerPoints || computerPoints) < 1) {
+        console.log("playerClick: " + selection);
+        playRound(selection);
+    } else {
+        results();
+    }
 }
 
 function game() {
-    let selection;
     gameButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-            selection = button.id;
-            if ((playerPoints || computerPoints) < 1) {
-                playRound(selection);
-                console.log("playerClick: " + selection);
-            } else {
-                results();
-                button.removeEventListener('click',)
-            }
-        });
+        button.addEventListener('click', handler);
     })
 }
 
 function results() {
     gameButtons.forEach((button) => {
-        button.removeEventListener('click', handler)
+        button.removeEventListener('click', handler);
     }
     )
     if (playerPoints > computerPoints) {
