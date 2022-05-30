@@ -3,18 +3,16 @@ let computerPoints = 0;
 let computerRenderPts = document.querySelector('#computerPoints');
 let playerRenderPts = document.querySelector('#playerPoints');
 
-let choice = ["rock", "paper", "scissor"];
+const choice = ["rock", "paper", "scissor"];
 const container = document.querySelector('#container').children;
 const gameButtons = document.querySelectorAll('.game');
+const playerChoice = document.querySelector('#playerChoice').firstElementChild;
+const computerChoice = document.querySelector('#computerChoice').firstElementChild;
+// playerChoice.textContent = "FUUUUUK!";
 
-
-function handler() {
-    let selection;
-    gameButtons.forEach((button) => {
-        selection = button.id;
-    })
-    if ((playerPoints || computerPoints) < 1) {
-        console.log("playerClick: " + selection);
+function handler(selection) {
+    // this is broken because it loops until the last "scissor"
+    if ((playerPoints || computerPoints) < 5) {
         playRound(selection);
     } else {
         results();
@@ -23,8 +21,14 @@ function handler() {
 
 function game() {
     gameButtons.forEach((button) => {
-        button.addEventListener('click', handler);
+        button.addEventListener('click', () => {handler(button.id)});
     })
+}
+
+function lose() {
+
+}
+function win() {
 }
 
 function results() {
@@ -54,6 +58,8 @@ function playRound(playerSelection, computerSelection = computerPLay()) {
     // playerSelection = playerClick();
     console.log(playerSelection + " some fun");
     // computerSelection = computerPLay();
+    playerChoice.textContent = playerSelection;
+    computerChoice.textContent = computerSelection;
     console.log(`Player selection: ${playerSelection} and computer: ${computerSelection}`);
 
     if (playerSelection == "rock") {
@@ -77,7 +83,5 @@ function playRound(playerSelection, computerSelection = computerPLay()) {
     }
     computerRenderPts.textContent = computerPoints;
     playerRenderPts.textContent = playerPoints;
-    console.log(`Your points: ${playerPoints}`)
-    console.log(`computer Points: ${computerPoints}`)
 }
 game()
