@@ -23,25 +23,26 @@
         <button class="game" id="scissor">Sciccor</button>
     </div>
     <div id="restart">
-        <button id="restart">Restart?</button>
+        <button id="restart" onClick="document.location.reload(true)">Restart?</button>
     </div>
-    <div class="container2">Results:
-        <div>
-            <div id="computerChoice">Computer Selection
-                <p>?</p>
+    <div class="container">
+        <div class="container2">
+            <div>Choice
+                <div id="playerChoice">Player
+                    <p>?</p>
+                </div>
+                <div id="computerChoice">Computer
+                    <p>?</p>
+                </div>
             </div>
-            <div id="playerChoice">Player Selection
-                <p>?</p>
+            <div>Results
+                <div>Player
+                    <p id="playerPoints">0</p>
+                </div>
+                <div>Computer
+                    <p id="computerPoints">0</p>
+                </div>
             </div>
-        </div>
-        <div class="container3">
-            <div>Player
-                <p id="playerPoints">0</p>
-            </div>
-            <div>Computer
-                <p id="computerPoints">0</p>
-            </div>
-            <button id="btn">Click Me</button>
         </div>
         <h2 id="theWinner"></h2>
     </div>

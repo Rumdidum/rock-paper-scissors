@@ -1,3 +1,4 @@
+let flag = true;
 let playerPoints = 0;
 let computerPoints = 0;
 let computerRenderPts = document.querySelector('#computerPoints');
@@ -8,11 +9,12 @@ const container = document.querySelector('#container').children;
 const gameButtons = document.querySelectorAll('.game');
 const playerChoice = document.querySelector('#playerChoice').firstElementChild;
 const computerChoice = document.querySelector('#computerChoice').firstElementChild;
-// playerChoice.textContent = "FUUUUUK!";
+
+
 
 function handler(selection) {
     playRound(selection);
-    console.log(`Player: ${playerPoints} | Computer: ${computerPoints}`)
+    console.log(`Player: ${playerPoints} | Computer: ${computerPoints}`);
 }
 
 function game() {
@@ -27,14 +29,21 @@ function game() {
 function win() {
     let theWinner = document.querySelector('#theWinner');
     theWinner.textContent = "YOU WIN!";
+    let audio = new Audio('sounds/win.wav');
+    audio.play();
+    flag = false;
 }
 function lose() {
-  let theWinner = document.querySelector('#theWinner');
-  theWinner.textContent = "YOU LOSE!";
+    let theWinner = document.querySelector('#theWinner');
+    theWinner.textContent = "YOU LOSE!";
+    let audio = new Audio('sounds/lose.wav');
+    audio.play();
+    flag = false;
 }
 function tie() {
     let theWinner = document.querySelector('#theWinner');
-    theWinner.textContent = "IT's A TIE!";
+    theWinner.textContent = "IT'S A TIE!";
+    flag = false;
 }
 
 function results() {
@@ -42,12 +51,15 @@ function results() {
         button.removeEventListener('click', handler);
     }
     )
-    if (playerPoints > computerPoints) {
-        win();
-    } else if (computerPoints > playerPoints) {
-        lose();
-    } else {
-        tie();
+    if (flag === true) {
+
+        if (playerPoints > computerPoints) {
+            win();
+        } else if (computerPoints > playerPoints) {
+            lose();
+        } else {
+            tie();
+        }
     }
 }
 
@@ -59,33 +71,35 @@ function computerPLay() {
 }
 
 function playRound(playerSelection, computerSelection = computerPLay()) {
-    if ((playerPoints || computerPoints) < 2) {
+    
+    if ((playerPoints < 5) && (computerPoints < 5)) {
         playerChoice.textContent = playerSelection;
         computerChoice.textContent = computerSelection;
     
         if (playerSelection == "rock") {
             if (computerSelection == "paper") {
-                computerPoints += 1
+                computerPoints += 1;
             } else if (computerSelection == "scissor") {
-                playerPoints += 1
+                playerPoints += 1;
             }
         } else if (playerSelection == "paper") {
             if (computerSelection == "scissor") {
-                computerPoints += 1
+                computerPoints += 1;
             } else if (computerSelection == "rock") {
-                playerPoints += 1
+                playerPoints += 1;
             }
         } else if (playerSelection == "scissor") {
             if (computerSelection == "rock") {
-                computerPoints += 1
+                computerPoints += 1;
             } else if (computerSelection == "paper") {
-                playerPoints += 1
+                playerPoints += 1;
             }
         }
-        computerRenderPts.textContent = computerPoints;
-        playerRenderPts.textContent = playerPoints;
     } else {
         results();
     }
+    computerRenderPts.textContent = computerPoints;
+    playerRenderPts.textContent = playerPoints;
 }
-game()
+game();
+
