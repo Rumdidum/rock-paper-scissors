@@ -1,10 +1,17 @@
 
-/* * {
-    border: red solid 2px;
-} */
+* {
+    /* border: red solid 2px; */
+    font-family: 'Press Start 2P', cursive;
+}
 body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    background-image: url(images/background2.png);
+    background-color: rgb(73, 110, 125);
+    background-repeat: no-repeat;
+    background-size: auto;
+    
 }
 .container2 {
     display: flex;
@@ -24,7 +31,7 @@ body {
 }
 #game button {
     padding: 20px;
-    width: 100px;
+    width: 200px;
     cursor: pointer;
 }
 a, a:visited, a:hover, a:active {
