@@ -30,12 +30,13 @@ function handler(selection) {
 }
 
 function runGame() {
-
-    gameButtons.forEach((button) => {
-        // Its necessary to use Arrow function with another function "handler" passed to it.
-        // Now its possible to remove the listener.
-        button.addEventListener('click', () => {handler(button.id)});
-    })
+    if (flag != false) {
+        gameButtons.forEach((button) => {
+            // Its necessary to use Arrow function with another function "handler" passed to it.
+            // Now its possible to remove the listener.
+            button.addEventListener('click', () => {handler(button.id)});
+        })
+    }
 }
 
 function win() {
@@ -50,11 +51,6 @@ function lose() {
     theWinner.textContent = "YOU LOSE!";
     let audio = new Audio('sounds/lose.wav');
     audio.play();
-    flag = false;
-}
-function tie() {
-    let theWinner = document.querySelector('#theWinner');
-    theWinner.textContent = "IT'S A TIE!";
     flag = false;
 }
 
@@ -80,6 +76,12 @@ function computerPLay() {
     let random_number = Math.floor(3 * Math.random());
     return choice[random_number];
 
+}
+
+function checkPoints() {
+    if (!((playerPoints < 5) && (computerPoints < 5))) {
+        results()
+    }
 }
 
 function playRound(playerSelection, computerSelection = computerPLay()) {
@@ -112,6 +114,7 @@ function playRound(playerSelection, computerSelection = computerPLay()) {
     }
     computerRenderPts.textContent = computerPoints;
     playerRenderPts.textContent = playerPoints;
+    checkPoints()
 }
 runGame();
 
