@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project:Rock-Paper-Scissors</title>
     <link rel="stylesheet" href="style.css">
+    <!--  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
     <script src="scripts/my-script.js" defer></script>
 </head>
 
@@ -18,24 +23,29 @@
         <button class="game" id="scissor">Sciccor</button>
     </div>
     <div id="restart">
-        <button id="restart">Restart?</button>
+        <button id="restart" onClick="document.location.reload(true)">Restart?</button>
     </div>
-    <div class="container2">Results:
-        <div class="container3">
-            <div>Player:
-                <p id="playerPoints">0</p>
+    <div class="container">
+        <div class="container2">
+            <div>Choice
+                <div id="playerChoice">Player
+                    <p>?</p>
+                </div>
+                <div id="computerChoice">Computer
+                    <p>?</p>
+                </div>
             </div>
-            <div>Computer:
-                <p id="computerPoints">0</p>
+            <div>Results
+                <div>Player
+                    <p id="playerPoints">0</p>
+                </div>
+                <div>Computer
+                    <p id="computerPoints">0</p>
+                </div>
             </div>
-            <button id="btn">Click Me</button>
         </div>
+        <h2 id="theWinner"></h2>
     </div>
-    
-    
-
-
-
 </body>
 
 </html>

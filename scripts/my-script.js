@@ -1,30 +1,61 @@
+let flag = true;
 let playerPoints = 0;
 let computerPoints = 0;
 let computerRenderPts = document.querySelector('#computerPoints');
 let playerRenderPts = document.querySelector('#playerPoints');
 
-let choice = ["rock", "paper", "scissor"];
+const choice = ["rock", "paper", "scissor"];
 const container = document.querySelector('#container').children;
 const gameButtons = document.querySelectorAll('.game');
+const playerChoice = document.querySelector('#playerChoice').firstElementChild;
+const computerChoice = document.querySelector('#computerChoice').firstElementChild;
 
-// Just a handler
-function handler() {
-    let selection;
-    gameButtons.forEach((button) => {
-        selection = button.id;
-    })
-    if ((playerPoints || computerPoints) < 1) {
-        console.log("playerClick: " + selection);
+
+
+function handler(selection) {
+    if (flag != false) {
+        if (selection === "scissor") {
+            let audio = new Audio('sounds/scissors.wav');
+            audio.play();
+        } else if (selection === "rock") {
+            let audio = new Audio('sounds/rock.wav');
+            audio.play();
+        } else if (selection === "paper") {
+            let audio = new Audio('sounds/paper.wav');
+            audio.play();
+        }
         playRound(selection);
-    } else {
-        results();
+        console.log(`Player: ${playerPoints} | Computer: ${computerPoints}`);
     }
 }
 
-function game() {
+function runGame() {
+
     gameButtons.forEach((button) => {
-        button.addEventListener('click', handler);
+        // Its necessary to use Arrow function with another function "handler" passed to it.
+        // Now its possible to remove the listener.
+        button.addEventListener('click', () => {handler(button.id)});
     })
+}
+
+function win() {
+    let theWinner = document.querySelector('#theWinner');
+    theWinner.textContent = "YOU WIN!";
+    let audio = new Audio('sounds/win.wav');
+    audio.play();
+    flag = false;
+}
+function lose() {
+    let theWinner = document.querySelector('#theWinner');
+    theWinner.textContent = "YOU LOSE!";
+    let audio = new Audio('sounds/lose.wav');
+    audio.play();
+    flag = false;
+}
+function tie() {
+    let theWinner = document.querySelector('#theWinner');
+    theWinner.textContent = "IT'S A TIE!";
+    flag = false;
 }
 
 function results() {
@@ -32,15 +63,16 @@ function results() {
         button.removeEventListener('click', handler);
     }
     )
-    if (playerPoints > computerPoints) {
-        console.log("you win")
-    } else if (computerPoints > playerPoints) {
-        console.log("you lose")
-    } else {
-        console.log("its a tie")
+    if (flag === true) {
+
+        if (playerPoints > computerPoints) {
+            win();
+        } else if (computerPoints > playerPoints) {
+            lose();
+        } else {
+            tie();
+        }
     }
-    console.log(`Your points: ${playerPoints}`)
-    console.log(`computer Points: ${computerPoints}`)
 }
 
 // Generates a random number from 0 to 2 and use it to get a string from choice Array
@@ -51,33 +83,35 @@ function computerPLay() {
 }
 
 function playRound(playerSelection, computerSelection = computerPLay()) {
-    // playerSelection = playerClick();
-    console.log(playerSelection + " some fun");
-    // computerSelection = computerPLay();
-    console.log(`Player selection: ${playerSelection} and computer: ${computerSelection}`);
-
-    if (playerSelection == "rock") {
-        if (computerSelection == "paper") {
-            computerPoints += 1
-        } else if (computerSelection == "scissor") {
-            playerPoints += 1
+    
+    if ((playerPoints < 5) && (computerPoints < 5)) {
+        playerChoice.textContent = playerSelection;
+        computerChoice.textContent = computerSelection;
+    
+        if (playerSelection == "rock") {
+            if (computerSelection == "paper") {
+                computerPoints += 1;
+            } else if (computerSelection == "scissor") {
+                playerPoints += 1;
+            }
+        } else if (playerSelection == "paper") {
+            if (computerSelection == "scissor") {
+                computerPoints += 1;
+            } else if (computerSelection == "rock") {
+                playerPoints += 1;
+            }
+        } else if (playerSelection == "scissor") {
+            if (computerSelection == "rock") {
+                computerPoints += 1;
+            } else if (computerSelection == "paper") {
+                playerPoints += 1;
+            }
         }
-    } else if (playerSelection == "paper") {
-        if (computerSelection == "scissor") {
-            computerPoints += 1
-        } else if (computerSelection == "rock") {
-            playerPoints += 1
-        }
-    } else if (playerSelection == "scissor") {
-        if (computerSelection == "rock") {
-            computerPoints += 1
-        } else if (computerSelection == "paper") {
-            playerPoints += 1
-        }
+    } else {
+        results();
     }
     computerRenderPts.textContent = computerPoints;
     playerRenderPts.textContent = playerPoints;
-    console.log(`Your points: ${playerPoints}`)
-    console.log(`computer Points: ${computerPoints}`)
 }
-game()
+runGame();
+
