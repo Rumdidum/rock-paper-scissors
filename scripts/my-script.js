@@ -13,11 +13,21 @@ const computerChoice = document.querySelector('#computerChoice').firstElementChi
 
 
 function handler(selection) {
+    if (selection === "scissor") {
+        let audio = new Audio('sounds/scissors.wav');
+        audio.play();
+    } else if (selection === "rock") {
+        let audio = new Audio('sounds/rock.wav');
+        audio.play();
+    } else if (selection === "paper") {
+        let audio = new Audio('sounds/paper.wav');
+        audio.play();
+    }
     playRound(selection);
     console.log(`Player: ${playerPoints} | Computer: ${computerPoints}`);
 }
 
-function game() {
+function runGame() {
 
     gameButtons.forEach((button) => {
         // Its necessary to use Arrow function with another function "handler" passed to it.
@@ -101,5 +111,5 @@ function playRound(playerSelection, computerSelection = computerPLay()) {
     computerRenderPts.textContent = computerPoints;
     playerRenderPts.textContent = playerPoints;
 }
-game();
+runGame();
 
