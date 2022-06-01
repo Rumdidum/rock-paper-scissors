@@ -17,39 +17,41 @@
 </head>
 
 <body id="game">
-    <h1>Rock-Paper-Scissor</h1>
-    <div id="container">
-        <!-- To use accesskey SHIFT+ALT+<accesskey> -->
-        <button class="game" id="rock" accesskey="1">Rock</button>
-        <button class="game" id="paper" accesskey="2">Paper</button>
-        <button class="game" id="scissor" accesskey="3">Sciccor</button>
-    </div>
-    <div>
-        <button id="restart" onClick="document.location.reload(true)" accesskey="r">Restart?</button>
-    </div>
-    <div class="container">
-        <div class="container2">
-            <div class="border">
-                <div class="outcome">Choice</div>
-                <div id="playerChoice" class="item">Player
-                    <p>?</p>
-                </div>
-                <div id="computerChoice" class="item">Computer
-                    <p>?</p>
-                </div>
-            </div>
-            <div class="border">
-                <div class="outcome">Result</div>
-                <div class="item">Player
-                    <p id="playerPoints">0</p>
-                </div>
-                <div class="item">Computer
-                    <p id="computerPoints">0</p>
-                </div>
-            </div>
+    <main>
+        <h1>Rock-Paper-Scissor</h1>
+        <div id="container">
+            <!-- To use accesskey SHIFT+ALT+<accesskey> -->
+            <button class="game" id="rock" accesskey="1">Rock</button>
+            <button class="game" id="paper" accesskey="2">Paper</button>
+            <button class="game" id="scissor" accesskey="3">Sciccor</button>
         </div>
-        <h2 id="theWinner"></h2>
-    </div>
+        <div>
+            <button id="restart" onClick="document.location.reload(true)" accesskey="r">Restart?</button>
+        </div>
+        <div class="container">
+            <div class="container2">
+                <div class="border">
+                    <div class="outcome">Choice</div>
+                    <div id="playerChoice" class="item">Player
+                        <p>?</p>
+                    </div>
+                    <div id="computerChoice" class="item">Computer
+                        <p>?</p>
+                    </div>
+                </div>
+                <div class="border">
+                    <div class="outcome">Result</div>
+                    <div class="item">Player
+                        <p id="playerPoints">0</p>
+                    </div>
+                    <div class="item">Computer
+                        <p id="computerPoints">0</p>
+                    </div>
+                </div>
+            </div>
+            <h2 id="theWinner"></h2>
+    </main>
+    <footer id="footer">Copyright© Rumdidum 2022</footer>
 </body>
 
 </html>
