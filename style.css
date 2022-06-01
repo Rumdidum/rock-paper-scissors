@@ -33,7 +33,21 @@ body {
     padding: 20px;
     width: 200px;
     cursor: pointer;
+    background-color: aliceblue;
+}
+#game button:hover {
+    background-color: #4CAF50;
 }
 a, a:visited, a:hover, a:active {
   color: inherit;
+}
+.outcome {
+    padding: 20px 20px;
+    background-color: aliceblue;
+}
+.item {
+    padding: 40px 80px;
+}
+.border {
+    border: 2px solid gray
 }

@@ -39,12 +39,22 @@ function runGame() {
     }
 }
 
+function disableButtons() {
+    gameButtons.forEach((button) => {
+        button.style.opacity = 0.6;
+        button.style.color = "gray";
+        button.style.pointerEvents = "none";
+    })
+}
+
 function win() {
     let theWinner = document.querySelector('#theWinner');
     theWinner.textContent = "YOU WIN!";
     let audio = new Audio('sounds/win.wav');
     audio.play();
     flag = false;
+    disableButtons()
+    
 }
 function lose() {
     let theWinner = document.querySelector('#theWinner');
@@ -52,6 +62,7 @@ function lose() {
     let audio = new Audio('sounds/lose.wav');
     audio.play();
     flag = false;
+    disableButtons()
 }
 
 function results() {
